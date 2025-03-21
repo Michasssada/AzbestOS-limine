@@ -9,18 +9,10 @@ void kernel_main()
     send_data_uart(COM1, 'a');
     load_gdt();
     initFramebuffer();
-
-    // Clear screen to blue
     clearScreen(0x000000); 
-
-    // Draw a white pixel at (100, 100)
-    putPixel(100, 100, 0xFFFFFF);
-    for (int i = 0; i < 1000; i++) {
-        putPixel(i, 100, 0xFFFFFF);
-    }
 
     while (1)
     {
-        asm volatile ("cli; hlt");
+        //asm volatile ("cli; hlt");
     }
 }

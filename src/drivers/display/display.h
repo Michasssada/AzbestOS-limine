@@ -1,8 +1,6 @@
 //
 // Created by Tangerine on 21.03.2025.
 //
-
-
 #include <stdint.h>
 #include <limine.h>
 #include <stddef.h>
