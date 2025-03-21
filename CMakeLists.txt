@@ -19,6 +19,7 @@ set(CMAKE_ASM_NASM_FLAGS "-f elf64 -I src/")
 add_executable(AzbestOS
         src/init/init.asm
         src/kernel_main.c
+        src/init/gdt.asm
 )
 
 include_directories(AzbestOS PRIVATE src)
