@@ -20,6 +20,7 @@ add_executable(AzbestOS
         src/init/init.asm
         src/kernel_main.c
         src/init/gdt.asm
+        src/drivers/uart/uart.c
 )
 
 include_directories(AzbestOS PRIVATE src)
