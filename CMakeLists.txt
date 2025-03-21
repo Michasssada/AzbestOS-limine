@@ -4,8 +4,8 @@ project(AzbestOS VERSION 1.0 LANGUAGES C CXX ASM)
 
 enable_language(ASM_NASM)
 
-set(CMAKE_C_COMPILER gcc)
-set(CMAKE_CXX_COMPILER g++)
+set(CMAKE_C_COMPILER clang)
+set(CMAKE_CXX_COMPILER clang++)
 set(CMAKE_ASM_NASM_COMPILER nasm)
 
 set(CMAKE_CXX_STANDARD 23)
@@ -21,6 +21,7 @@ add_executable(AzbestOS
         src/kernel_main.c
         src/init/gdt.asm
         src/drivers/uart/uart.c
+        src/drivers/vga/vga.c
 )
 
 include_directories(AzbestOS PRIVATE src)
