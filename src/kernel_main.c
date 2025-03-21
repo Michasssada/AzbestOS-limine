@@ -1,4 +1,5 @@
 #include <drivers/uart/uart.h>
+#include <limine.h>
 extern void load_gdt();
 void kernel_main()
 {
