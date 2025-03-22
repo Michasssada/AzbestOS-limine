@@ -10,6 +10,9 @@ void kernel_main()
     load_gdt();
     initFramebuffer();
     clearScreen(0x000000); 
+    for(int i = 0; i < 1000; i++) {
+        putPixel(i, i, 0xFFFFFF);
+    }
 
     while (1)
     {
