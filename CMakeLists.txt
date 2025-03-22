@@ -22,8 +22,6 @@ add_executable(AzbestOS
         src/kernel/cpu/gdt/gdt.asm
         src/drivers/uart/uart.c
         src/drivers/display/display.c
-        src/kernel/cpu/idt/idt.c
-        src/kernel/cpu/idt/idt.asm
 )
 
 include_directories(AzbestOS PRIVATE src)
