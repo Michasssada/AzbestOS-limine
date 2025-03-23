@@ -6,7 +6,7 @@
 #include <stddef.h>
 
 // Function declarations
-void initFramebuffer(void);
-void putPixel(int x, int y, uint32_t color);
-void clearScreen(uint32_t color);
+void init_framebuffer(void);
+void put_pixel(int x, int y, uint32_t color);
+void clear_screen(uint32_t color);
 

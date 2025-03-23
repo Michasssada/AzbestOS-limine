@@ -12,7 +12,7 @@ static uint32_t width = 0;
 static uint32_t height = 0;
 static uint32_t pitch = 0;
 
-void initFramebuffer(void) {
+void init_framebuffer(void) {
     if (framebufferRequest.response == NULL || framebufferRequest.response->framebuffer_count < 1) {
         for (;;); // Halt if no framebuffer
     }
@@ -24,15 +24,15 @@ void initFramebuffer(void) {
     pitch = framebuffer->pitch;
 }
 
-void putPixel(int x, int y, uint32_t color) {
+void put_pixel(int x, int y, uint32_t color) {
     if (x < 0 || y < 0 || x >= (int)width || y >= (int)height) return;
     fbPtr[y * (pitch / 4) + x] = color;
 }
 
-void clearScreen(uint32_t color) {
+void clear_screen(uint32_t color) {
     for (uint32_t y = 0; y < height; y++) {
         for (uint32_t x = 0; x < width; x++) {
-            putPixel(x, y, color);
+            put_pixel(x, y, color);
         }
     }
 }

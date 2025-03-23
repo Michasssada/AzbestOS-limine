@@ -10,9 +10,11 @@ section .text
 %include "init/cpu.asm"
 
 _start:
-    and rsp, ~16 ; Align to 16 bytes
+
     call setup_sse
     call setup_avx
+
+    and rsp, ~8 ; Align to 16 bytes (after call kernel main it will be 16 bytes aligned)
 
     call kernel_main
 
