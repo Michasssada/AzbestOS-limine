@@ -9,4 +9,6 @@
 void init_framebuffer(void);
 void put_pixel(int x, int y, uint32_t color);
 void clear_screen(uint32_t color);
+void draw_char(char c, int x, int y, uint32_t color);
+void draw_string(const char *str, int x, int y, uint32_t color);
 

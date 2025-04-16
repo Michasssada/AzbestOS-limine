@@ -1,5 +1,5 @@
 #include "display.h"
-
+#include "font8x8_basic.h"
 // Framebuffer request structure
 static volatile struct limine_framebuffer_request framebufferRequest = {
     .id = LIMINE_FRAMEBUFFER_REQUEST,
@@ -34,5 +34,25 @@ void clear_screen(uint32_t color) {
         for (uint32_t x = 0; x < width; x++) {
             put_pixel(x, y, color);
         }
+    }
+}
+
+void draw_char(char c, int x, int y, uint32_t color) {
+    if (c < 0 || c > 127) return;
+
+    const uint8_t *glyph = font8x8_basic[(int)c];
+    for (int row = 0; row < 8; row++) {
+        for (int col = 0; col < 8; col++) {
+            if (glyph[row] & (1 << col)) {
+                put_pixel(x + col, y + row, color);
+            }
+        }
+    }
+}
+void draw_string(const char *str, int x, int y, uint32_t color) {
+    while (*str) {
+        draw_char(*str, x, y, color);
+        x += 8; // Move to the next character position
+        str++;
     }
 }
