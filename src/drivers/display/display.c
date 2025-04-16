@@ -50,9 +50,20 @@ void draw_char(char c, int x, int y, uint32_t color) {
     }
 }
 void draw_string(const char *str, int x, int y, uint32_t color) {
+    int startX = x;
+
     while (*str) {
-        draw_char(*str, x, y, color);
-        x += 8; // Move to the next character position
+        if (*str == '\n') {
+            y += 8;      // Move to next line
+            x = startX;  // Reset X to original start position
+        } else if (*str == '\r') {
+            x = startX;  // Carriage return
+        } else if (*str == '\t') {
+            x += 8 * 4;  // Move 4 characters forward for tab
+        } else {
+            draw_char(*str, x, y, color);
+            x += 8;
+        }
         str++;
     }
 }
