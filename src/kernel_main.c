@@ -13,7 +13,7 @@ void kernel_main()
     initialize_idt();
     init_framebuffer();
     clear_screen(0x000000);
-    draw_string("Azbest OS Limine ver. 0.0.1", 10, 10, 0x00ff00);
+    draw_string("AzbestOS Limine ver. 0.0.1", 10, 10, 0x00ff00);
 
     while (1)
     {
