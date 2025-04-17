@@ -4,7 +4,6 @@
 #define IA32_APIC_BASE_MSR_ENABLE 0x800
 #define LAPIC_BASE_ADDRESS 0xFEE00000
 
-// MSR read/write functions
 static inline void cpuGetMSR(uint32_t msr, uint32_t *lo, uint32_t *hi) {
     asm volatile ("rdmsr" : "=a"(*lo), "=d"(*hi) : "c"(msr));
 }
@@ -13,7 +12,6 @@ static inline void cpuSetMSR(uint32_t msr, uint32_t lo, uint32_t hi) {
     asm volatile ("wrmsr" : : "c"(msr), "a"(lo), "d"(hi));
 }
 
-// Enable LAPIC
 void enable_apic() {
     uint32_t eax, edx;
     cpuGetMSR(IA32_APIC_BASE_MSR, &eax, &edx);
@@ -21,7 +19,7 @@ void enable_apic() {
     cpuSetMSR(IA32_APIC_BASE_MSR, eax, edx);
 }
 
-// LAPIC register access
+
 volatile uint32_t* lapic = (volatile uint32_t*)LAPIC_BASE_ADDRESS;
 
 #define LAPIC_REG(offset) (*(volatile uint32_t*)((uintptr_t)lapic + offset))
@@ -37,21 +35,14 @@ volatile uint32_t* lapic = (volatile uint32_t*)LAPIC_BASE_ADDRESS;
 #define APIC_TIMER_PERIODIC (1 << 17)
 #define APIC_LVT_MASKED     (1 << 16)
 
-// Calibrate LAPIC timer (simplified example)
+
 uint32_t lapic_calibrate_timer() {
-    // Set divide configuration to 16
+
     LAPIC_REG(LAPIC_TIMER_DIV) = 0x3;
 
-    // Set LVT Timer to one-shot mode and mask it
     LAPIC_REG(LAPIC_LVT_TIMER) = APIC_LVT_MASKED;
 
-    // Set initial count to maximum
     LAPIC_REG(LAPIC_TIMER_INIT) = 0xFFFFFFFF;
-
-    // Wait for a short duration (e.g., using PIT or another timer)
-    // This part is platform-specific and requires implementation
-
-    // Read current count
     uint32_t ticks = 0xFFFFFFFF - LAPIC_REG(LAPIC_TIMER_CURR);
 
     return ticks;
