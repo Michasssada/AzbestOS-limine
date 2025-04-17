@@ -5,7 +5,7 @@
 #include <drivers/display/display.h>
 #include <drivers/uart/uart.h>
 #include <limine.h>
-
+#include <drivers/cpu/APIC/apic.h>
 void kernel_main()
 {
 
@@ -13,6 +13,7 @@ void kernel_main()
     initialize_idt();
     init_framebuffer();
     clear_screen(0x000000);
+    enable_apic();
     draw_string("AzbestOS Limine ver. 0.0.1", 10, 10, 0x00ff00);
 
     while (1)

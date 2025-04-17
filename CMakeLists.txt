@@ -31,6 +31,7 @@ add_executable(AzbestOS
         src/drivers/cpu/gdt/load_gdt.asm
         src/drivers/cpu/idt/idt.c
         src/drivers/cpu/idt/idt.h
+        src/drivers/cpu/APIC/apic.c
         src/drivers/cpu/idt/load_idt.asm
         src/drivers/cpu/idt/ptrs.c
 )
